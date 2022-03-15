@@ -1,4 +1,5 @@
 import { useState } from "react"
+import CompHand from "./CompHand";
 import PlayerHand from "./PlayerHand";
 
 function Game() {
@@ -25,17 +26,18 @@ function Game() {
     const [isGameOver, setGameOver] = useState(false);
     const [isPlayerTurn, setPlayerTurn] = useState(true);
     const [playerHand, setPlayerHand] = useState([
-        cards[randomIndex],
-        cards[randomIndex]
+        cards[randomIndex()],
+        cards[randomIndex()]
     ]);
     const [compHand, setCompHand] = useState([
-        cards[randomIndex],
-        cards[randomIndex]
+        cards[randomIndex()],
+        cards[randomIndex()]
     ]);
 
   return (
     <div>
         <PlayerHand hand={playerHand} />
+        <CompHand hand={compHand} />
     </div>
   )
 }
