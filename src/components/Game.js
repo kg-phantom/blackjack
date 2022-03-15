@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react";
 import CompHand from "./CompHand";
 import PlayerHand from "./PlayerHand";
 
@@ -34,10 +34,28 @@ function Game() {
         cards[randomIndex()]
     ]);
 
+    const hit = () => {
+        if(isPlayerTurn) {
+            setPlayerHand([...playerHand, cards[randomIndex()]]);
+        } else {
+            console.log('comp chooses');
+        }
+        setPlayerTurn(!isPlayerTurn);
+    }
+
+    useEffect(() => {
+      if(!isPlayerTurn) {
+          console.log('comps turn');
+      }
+    }, [isPlayerTurn])
+    
+
   return (
     <div>
         <PlayerHand hand={playerHand} />
         <CompHand hand={compHand} />
+        <button disabled={!isPlayerTurn} onClick={hit}>Hit</button>
+        <button disabled={!isPlayerTurn}>Stand</button>
     </div>
   )
 }
