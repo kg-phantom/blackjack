@@ -3,23 +3,7 @@ import CompHand from "./CompHand";
 import PlayerHand from "./PlayerHand";
 
 function Game() {
-    const cards = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
-    const values = {
-        '1': 1,
-        '2': 2,
-        '3': 3,
-        '4': 4,
-        '5': 5,
-        '6': 6,
-        '7': 7,
-        '8': 8,
-        '9': 9,
-        '10': 10,
-        'J': 10,
-        'Q': 10,
-        'K': 10,
-        'A': 11
-    }
+    const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 'J', 'Q', 'K', 'A'];
 
     const randomIndex = () => Math.floor(Math.random() * 14);
 
@@ -34,6 +18,33 @@ function Game() {
         cards[randomIndex()]
     ]);
 
+    const getValue = (card) => {
+        if(typeof card === 'number') {
+            return card;
+        }
+        else if (card === 'A') {
+            return 11;
+        }
+        else {
+            return 10;
+        }
+    }
+
+    const getTotal = (hand) => hand.reduce((prev, current) => getValue(prev) + getValue(current), 0);
+    
+
+    const checkTotal = (hand) => {
+        if(getTotal(hand) < 21) {
+            console.log('less than 21');
+        }
+        if(getTotal(hand) > 21) {
+            console.log('over 21');
+        }
+        if(getTotal(hand) === 21) {
+            console.log('equals 21');
+        }
+    }
+
     const hit = () => {
         if(isPlayerTurn) {
             setPlayerHand([...playerHand, cards[randomIndex()]]);
@@ -45,7 +56,7 @@ function Game() {
 
     useEffect(() => {
       if(!isPlayerTurn) {
-          console.log('comps turn');
+          checkTotal(playerHand);
       }
     }, [isPlayerTurn])
     
