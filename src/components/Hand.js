@@ -1,7 +1,7 @@
-function PlayerHand({ hand }) {
+function Hand({ player, hand }) {
   return (
     <div>
-        <h2>You</h2>
+        <h2>{player}</h2>
         {hand.map((card, index) => (
             <div key={index}>{card}</div>
         ))}
@@ -9,4 +9,4 @@ function PlayerHand({ hand }) {
   )
 }
 
-export default PlayerHand
+export default Hand
