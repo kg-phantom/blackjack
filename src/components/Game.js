@@ -16,6 +16,7 @@ function Game() {
         cards[randomIndex()],
         cards[randomIndex()]
     ]);
+    const [win, setWin] = useState(false);
 
     const getValue = (card) => {
         if(typeof card === 'number') {
@@ -48,7 +49,7 @@ function Game() {
         if(isPlayerTurn) {
             setPlayerHand([...playerHand, cards[randomIndex()]]);
         } else {
-            console.log('comp chooses');
+            setCompHand([...compHand, cards[randomIndex()]]);
         }
         setPlayerTurn(!isPlayerTurn);
     }
@@ -56,20 +57,24 @@ function Game() {
     const compTurn = () => {
         if(getTotal(compHand) < 17) {
             hit();
+        } else {
+            console.log('comp stands');
         }
     }
 
     useEffect(() => {
       if(!isPlayerTurn) {
         if(getTotal(playerHand) < 21) {
-            return
+            compTurn();
         }
         if(getTotal(playerHand) > 21) {
             setGameOver(true);
         }
         if(getTotal(playerHand) === 21) {
+            setWin(true);
             setGameOver(true);
         }
+        
       }
     }, [isPlayerTurn])
     
@@ -84,7 +89,10 @@ function Game() {
             <button disabled={!isPlayerTurn}>Stand</button>
             </>
         ) : (
-            <div>Game Over</div>
+            <>
+            <h3>Game Over</h3>
+            <p>You {win ? 'won!' : 'lost!'}</p>
+            </>
         )}
         
     </div>
