@@ -10,3 +10,20 @@ header {
   color:rgb(241, 247, 253);
   padding: 10px;
 }
+
+.link {
+  color:rgb(241, 247, 253);
+  text-decoration: none;
+}
+
+.container {
+  padding: 20px;
+}
+
+h1, h2, h3, p {
+  padding: 10px;
+}
+
+.play-btn {
+  align-self: center;
+}

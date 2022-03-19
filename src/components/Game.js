@@ -107,7 +107,7 @@ function Game() {
   }, [isPlayerTurn]);
 
   return (
-    <div>
+    <div className="container">
       <Hand player="You" hand={playerHand} />
       <Hand player="Opponent" hand={compHand} />
       {!isGameOver ? (

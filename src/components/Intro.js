@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 function Intro() {
   return (
-    <div>
+    <div className='container'>
         <h1>Let's Play Blackjack!</h1>
 
         <h2>How to Play:</h2>
@@ -22,14 +22,14 @@ function Intro() {
                 On your turn, you can choose to:
                 <ul>
                     <li>Hit: Draw another card.</li>
-                    <li>Stand: Not draw another card.</li>
+                    <li>Stand: Pass your turn.</li>
                 </ul>
                 If you stand, your opponent executes their turn and whoever is closest to 21 without going over wins.
             </li>
         </ol>
 
-        <h2>Ready?</h2>
-        <Link to='/play'>
+        <h2 align='center'>Ready?</h2>
+        <Link to='/play' className='play-btn'>
             <button>Play</button>
         </Link>
     </div>
