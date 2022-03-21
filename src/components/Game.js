@@ -16,7 +16,7 @@ function Game() {
     cards[randomIndex()],
     cards[randomIndex()],
   ]);
-  const [win, setWin] = useState('lost!');
+  const [win, setWin] = useState("lost!");
   const [stood, setStood] = useState(false);
 
   const getValue = (card) => {
@@ -33,15 +33,15 @@ function Game() {
     hand.reduce((prev, current) => getValue(prev) + getValue(current), 0);
 
   const checkDiff = () => {
-      let playerDiff = 21 - getTotal(playerHand);
-      let compDiff = 21 - getTotal(compHand);
-      if(playerDiff === compDiff) {
-          setWin('tied!');
-      }
-      if(playerDiff < compDiff) {
-          setWin('won!');
-      }
-  }
+    let playerDiff = 21 - getTotal(playerHand);
+    let compDiff = 21 - getTotal(compHand);
+    if (playerDiff === compDiff) {
+      setWin("tied!");
+    }
+    if (playerDiff < compDiff) {
+      setWin("won!");
+    }
+  };
 
   const hit = () => {
     if (isPlayerTurn) {
@@ -53,14 +53,13 @@ function Game() {
   };
 
   const stand = () => {
-      if(stood) {
-          checkDiff();
-          setGameOver(true);
-      }
-      else {
-          setStood(true);
-          setPlayerTurn(!isPlayerTurn);
-      }
+    if (stood) {
+      checkDiff();
+      setGameOver(true);
+    } else {
+      setStood(true);
+      setPlayerTurn(!isPlayerTurn);
+    }
   };
 
   const compTurn = () => {
@@ -73,7 +72,7 @@ function Game() {
 
   const reset = () => {
     setGameOver(false);
-    setWin('lost!');
+    setWin("lost!");
     setStood(false);
     setPlayerTurn(true);
     setPlayerHand([cards[randomIndex()], cards[randomIndex()]]);
@@ -89,7 +88,7 @@ function Game() {
         setGameOver(true);
       }
       if (getTotal(playerHand) === 21) {
-        setWin('won!');
+        setWin("won!");
         setGameOver(true);
       }
     } else {
@@ -97,7 +96,7 @@ function Game() {
         return;
       }
       if (getTotal(compHand) > 21) {
-        setWin('won!');
+        setWin("won!");
         setGameOver(true);
       }
       if (getTotal(compHand) === 21) {
@@ -112,21 +111,24 @@ function Game() {
       <Hand player="Opponent" hand={compHand} />
       {!isGameOver ? (
         <>
-          <button disabled={!isPlayerTurn} onClick={hit}>
-            Hit
-          </button>
-          <button disabled={!isPlayerTurn} onClick={stand}>
-            Stand
-          </button>
           {!isPlayerTurn ? (
             <h3>Your opponent is taking their turn...</h3>
-          ) : null}
+          ) : (
+            <>
+              <button className="btn-green" onClick={hit}>
+                Hit
+              </button>
+              <button className="btn-red" onClick={stand}>
+                Stand
+              </button>
+            </>
+          )}
         </>
       ) : (
         <>
           <h3>Game Over</h3>
           <p>You {win}</p>
-          <button onClick={reset}>Play again</button>
+          <button className="play-btn" onClick={reset}>Play again</button>
         </>
       )}
     </div>
