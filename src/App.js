@@ -10,6 +10,7 @@ function App() {
       <Header />
       <Routes>
         <Route path='/' element={<Intro />} />
+        <Route path='/blackjack' element={<Intro />} />
         <Route path='/play' element={<Game />} />
 
         <Route path='*' element={<NoMatch />} />
