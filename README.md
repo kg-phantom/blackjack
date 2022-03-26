@@ -3,7 +3,7 @@ A web application to play Blackjack against a computer.
 
 [Click here](https://kg-phantom.github.io/blackjack/) to go to the application!
 
-![Blackjack app](assets\images\blackjack-sc.PNG)
+![Blackjack app](./assets/images/blackjack-sc.PNG)
 
 ## React Components
 This app uses multiple React components to keep it neat and fast.
